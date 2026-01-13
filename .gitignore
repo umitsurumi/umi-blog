@@ -1,0 +1,27 @@
+# --- Hugo 核心构建产物 ---
+public/
+
+# --- Hugo 缓存与资源 ---
+resources/_gen/
+resources/images/
+
+# 临时文件
+hugo_stats.json
+
+# --- 依赖目录 ---
+node_modules/
+
+# --- Obsidian ---
+.obsidian/
+.trash/
+
+# --- 系统与编辑器垃圾 ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# --- 敏感信息 ---
+.env
