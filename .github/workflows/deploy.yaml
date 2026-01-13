@@ -17,7 +17,7 @@ permissions:
 # 并发控制，防止连续 push 两次导致部署冲突
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 # 默认使用 bash
 defaults:
