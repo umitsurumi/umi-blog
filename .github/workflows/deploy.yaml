@@ -1,0 +1,64 @@
+name: Deploy to GitHub Pages
+
+on:
+  # 监听 main 分支的 push 动作
+  push:
+    branches:
+      - main
+  # 允许你在 GitHub 网页端手动点击按钮触发部署
+  workflow_dispatch:
+
+# 设置权限，允许 Actions 修改 GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 这是一个并发控制，防止你连续 push 两次导致部署冲突
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+# 默认使用 bash
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  # 构建任务
+  build:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.154.4 # 建议锁定一个较新的版本，避免未来 Hugo 升级导致破坏性变更
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive # 关键！Stack 主题是 submodule，必须递归拉取
+          fetch-depth: 0        #以此获取 Git 信息（Last Modified 等功能需要）
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          extended: true # Stack 主题依赖 SCSS，必须开启 extended 版本
+
+      - name: Build with Hugo
+        run: hugo --minify
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  # 部署任务
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
