@@ -86,8 +86,8 @@ params:
             default: Licensed under CC BY-NC-SA 4.0
 
     comments:
-        enabled: false
-        provider: gitalk
+        enabled: true
+        provider: waline
 
         disqusjs:
             shortname:
@@ -122,15 +122,16 @@ params:
 
         # Waline client configuration see: https://waline.js.org/en/reference/component.html
         waline:
-            serverURL:
-            lang:
-            pageview:
+            serverURL: https://waline.umiko.moe
+            lang: zh
+            pageview: true
+            comment: true
+            reaction: true
             emoji:
-                - https://unpkg.com/@waline/emojis@1.0.1/weibo
+                - https://unpkg.com/@waline/emojis@1.4.0/weibo
             requiredMeta:
-                - name
+                - nick
                 - email
-                - url
             locale:
                 admin: Admin
                 placeholder:
