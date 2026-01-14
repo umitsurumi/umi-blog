@@ -62,8 +62,8 @@ params:
     footer:
         since: 2025
         customText: |
-            网站总访客数：<span id='busuanzi_value_site_uv'>Loading</span><br/>
-            网站总访问量：<span id='busuanzi_value_site_pv'>Loading</span>
+            网站总访客数：<span id='vercount_value_site_uv'>Loading</span><br/>
+            网站总访问量：<span id='vercount_value_site_pv'>Loading</span>
 
     dateFormat:
         published: Jan 02, 2006

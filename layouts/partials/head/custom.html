@@ -1,0 +1,19 @@
+<style>
+    /* Overwrite CSS variable */
+    :root {
+        --article-font-family: "Maple Mono NF CN", var(--base-font-family);
+    }
+</style>
+
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fontsapi.zeoseven.com/442/main/result.css";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="8a533d26-d9be-4cde-9645-fde43b91b87d"></script>
